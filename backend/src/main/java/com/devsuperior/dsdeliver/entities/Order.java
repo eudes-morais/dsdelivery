@@ -1,4 +1,4 @@
-package com.devsuperior.dsdeliver.entity;
+package com.devsuperior.dsdeliver.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
