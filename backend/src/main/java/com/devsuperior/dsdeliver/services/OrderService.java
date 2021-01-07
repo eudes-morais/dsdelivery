@@ -20,14 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderService {
 
     @Autowired
-    private OrderRepository repository;
+    private OrderRepository orderRepository;
 
     @Autowired
     private ProductRepository productRepository;
     
     @Transactional(readOnly = true)
     public List<OrderDTO> findAll() {
-        List<Order> list = repository.findOrderWithProducts();
+        List<Order> list = orderRepository.findOrderWithProducts();
 
         return list.stream().map(o -> new OrderDTO(o)).collect(Collectors.toList());
     }
@@ -41,9 +41,17 @@ public class OrderService {
             order.getProducts().add(product);
         }
 
-        order = repository.save(order);
+        order = orderRepository.save(order);
 
         return new OrderDTO(order);
     }
 
+    @Transactional
+    public OrderDTO setDelivered(Long id) {
+        Order order  = orderRepository.getOne(id);
+        order.setStatus(OrderStatus.DELIVERED);
+        order = orderRepository.save(order);
+
+        return new OrderDTO(order);
+    }
 }
