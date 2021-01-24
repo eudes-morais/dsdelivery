@@ -2,8 +2,8 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 const position = {
-    lat: 51.505,
-    lng: -0.09
+    lat: -25.4817855,
+    lng: -49.2965682
 }
 
 function OrderLocation() {
@@ -23,8 +23,8 @@ function OrderLocation() {
                         />
                         <Marker position={position}>
                             <Popup>
-                                Meu marcador
-                        </Popup>
+                                Minha marcação
+                            </Popup>
                         </Marker>
                     </MapContainer>
 
